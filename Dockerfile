@@ -10,7 +10,7 @@ COPY src /app/src
 COPY pom.xml /app
 
 # 执行代码编译命令
-RUN mvn -f /app/pom.xml clean package -Dspring.profiles.active=test
+RUN mvn -f /app/pom.xml clean package
 
 # 选择运行时基础镜像
 FROM alpine:3.13
@@ -34,4 +34,4 @@ COPY --from=build /app/target/space-0.0.1.jar .
 EXPOSE 80
 
 # 执行启动命令
-CMD ["java", "-jar", "/app/space-0.0.1.jar", "--spring.profiles.active=test"]
+CMD ["java", "-jar", "/app/space-0.0.1.jar"]
