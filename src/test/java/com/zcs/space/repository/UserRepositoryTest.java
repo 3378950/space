@@ -22,8 +22,10 @@ class UserRepositoryTest {
         user.setLocked(false);
         user.setPassword("123456");
         user.setGender(Gender.MALE);
+
         User saveUser = repository.save(user);
-        System.out.println(saveUser.toString());
-        User res = repository.get("zcs");
+        User res = repository.getByUsername("zcs");
+        System.out.println(res.toString());
+
     }
 }
