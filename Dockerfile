@@ -15,7 +15,7 @@ RUN mvn -f /app/pom.xml clean package -Dspring.profiles.active=prod
 # 选择运行时基础镜像
 FROM alpine:3.13
 
-ENV MYSQL_HOST 10.0.224.8
+ENV MYSQL_HOST 10.0.64.9
 ENV MYSQL_USER_NAME root
 ENV MYSQL_PASSWORD @Zcs991023
 ENV DATABASE_NAME space
