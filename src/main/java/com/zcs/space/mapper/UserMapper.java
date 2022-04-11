@@ -1,5 +1,6 @@
 package com.zcs.space.mapper;
 
+import com.zcs.space.dto.UserCreateDto;
 import com.zcs.space.dto.UserDto;
 import com.zcs.space.entity.User;
 import com.zcs.space.vo.UserVo;
@@ -11,5 +12,7 @@ import org.springframework.stereotype.Component;
 public interface UserMapper {
     UserDto toDto(User user);
 
-    UserVo tovo(UserDto userDto);
+    UserVo toVo(UserDto userDto);
+
+    User createEntity(UserCreateDto userCreateDto);
 }
