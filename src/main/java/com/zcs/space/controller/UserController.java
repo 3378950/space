@@ -1,12 +1,11 @@
 package com.zcs.space.controller;
 
+import com.zcs.space.dto.UserCreateDto;
 import com.zcs.space.mapper.UserMapper;
 import com.zcs.space.service.UserService;
 import com.zcs.space.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,8 +22,15 @@ public class UserController {
     @GetMapping("/")
     List<UserVo> list() {
         return userService.list().stream()
-                .map(userMapper::tovo).collect(Collectors.toList());
+                .map(userMapper::toVo).collect(Collectors.toList());
     }
+
+    @PostMapping("/")
+    UserVo create(@RequestBody UserCreateDto userCreateDto) {
+        // @RequestBody: json from fontend -> userCreateDto
+        return userMapper.toVo(userService.create(userCreateDto));
+    }
+
 
     @Autowired
     public void setUserService(UserService userService) {

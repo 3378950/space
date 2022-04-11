@@ -24,8 +24,10 @@ class UserRepositoryTest {
         user.setGender(Gender.MALE);
 
         User saveUser = repository.save(user);
-        User res = repository.getByUsername("zcs");
-        System.out.println(res.toString());
+
+        System.out.println(repository.findAll());
+//        User res = repository.getByUsername("zcs");
+//        System.out.println(res.toString());
 
     }
 }
