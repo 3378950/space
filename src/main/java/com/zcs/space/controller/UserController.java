@@ -5,6 +5,8 @@ import com.zcs.space.dto.UserUpdateRequest;
 import com.zcs.space.mapper.UserMapper;
 import com.zcs.space.service.UserService;
 import com.zcs.space.vo.UserVo;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,18 +20,20 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/users")
 @CrossOrigin
+@Api(tags = "用户管理")
 public class UserController {
 
     UserService userService;
 
     UserMapper userMapper;
 
+    @ApiOperation("用户检索")
     @GetMapping
     Page<UserVo> search(@PageableDefault(sort = {"createdTime"}, direction = Sort.Direction.ASC) Pageable pageable) {
         return userService.search(pageable).map(userMapper::toVo);
     }
 
-    @PostMapping("/")
+    @PostMapping
     UserVo create(@Validated @RequestBody UserCreateRequest userCreateRequest) {
         // @RequestBody: json from fontend -> userCreateDto(username, password)
         return userMapper.toVo(userService.create(userCreateRequest));
@@ -49,6 +53,11 @@ public class UserController {
     @DeleteMapping("/{id}")
     void delete(@PathVariable String id) {
         userService.delete(id);
+    }
+
+    @GetMapping("/me")
+    UserVo me() {
+        return userMapper.toVo(userService.getCurrentUser());
     }
 
 

@@ -1,5 +1,6 @@
 package com.zcs.space.service;
 
+import com.zcs.space.dto.TokenCreateRequest;
 import com.zcs.space.dto.UserCreateRequest;
 import com.zcs.space.dto.UserDto;
 import com.zcs.space.dto.UserUpdateRequest;
@@ -10,9 +11,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 
 public interface UserService extends UserDetailsService {
-
-
-
 
     UserDto create(UserCreateRequest userCreateRequest);
 
@@ -26,4 +24,8 @@ public interface UserService extends UserDetailsService {
     void delete(String id);
 
     Page<UserDto> search(Pageable pageable);
+
+    String createToken(TokenCreateRequest tokenCreateRequest);
+
+    UserDto getCurrentUser();
 }
