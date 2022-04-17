@@ -14,7 +14,7 @@ public class TokenController {
 
     UserService userService;
 
-    @PostMapping("/")
+    @PostMapping
     public String create(@RequestBody TokenCreateRequest tokenCreateRequest) {
         return userService.createToken(tokenCreateRequest);
     }
