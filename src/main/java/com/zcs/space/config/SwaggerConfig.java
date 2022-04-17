@@ -24,7 +24,7 @@ public class SwaggerConfig {
                 .securityContexts(Collections.singletonList(securityContext()))
                 .securitySchemes(Collections.singletonList(apiKey()))
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.zcs.space.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.zcs.space"))
                 .paths(PathSelectors.any())
                 .build();
     }
